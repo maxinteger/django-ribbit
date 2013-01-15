@@ -1,4 +1,6 @@
 # Django settings for ribbit project.
+import os
+import dj_database_url
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -19,6 +21,9 @@ DATABASES = {
         'PORT': '3306',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+# Parse database configuration from $DATABASE_URL
+DATABASES['default'] =  dj_database_url.config()
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -56,16 +61,16 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+STATIC_ROOT= os.path.join(PROJECT_ROOT,'staticfiles/')
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT,'static/'),
+)
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
-# Additional locations of static files
-STATICFILES_DIRS = (
-    '/media/data/projects/python/django/ribbit/static',
-)
 
 # List of finder classes that know how to find static files in
 # various locations.
