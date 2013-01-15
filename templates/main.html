@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>{% block title %}My amazing site{% endblock %}</title>
+
+{#	<link rel="stylesheet" href="{% get_static_prefix %}style/main.css" />#}
+{#	<link rel="stylesheet" href="{% get_static_prefix %}style/common.css" />#}
+    <link rel="stylesheet/less" href="{% get_static_prefix %}style/style.less" />
+	{% for style in styles %}
+		<link rel="stylesheet/css" href="{% get_static_prefix %}style/{{style}}.css" />
+	{% endfor %}
+
+</head>
+
+<body>
+    {% if jsparams %}
+        <div id="id-js-params">
+            {% for key, value in jsparams.items %}
+                <input type="hidden" name="{{key}}" value="{{value}}" />
+            {% endfor %}
+        </div>
+    {% endif %}
+    <header>
+        <div class="wrapper">
+            <img src="{% get_static_prefix %}gfx/logo.png">
+            <span>Twitter Clone</span>
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url django.contrib.auth.views.logout %}">
+                    {% csrf_token %}
+                    <input id="btnLogOut" type="submit" value="logout" />
+                    <input type="hidden" name="next" value="{{ next|default:"/ribbit" }}" />
+                </form>
+                <span id="id-username">{{ user.username }}</span>
+            {% else %}
+                <form method="post" action="{% url django.contrib.auth.views.login %}">
+                    {% csrf_token %}
+                    {{ form.username }}
+                    {{ form.password }}
+                    <input type="submit" value="login" />
+                    <input type="hidden" name="next" value="{{ next|default:"/" }}" />
+                </form>
+            {% endif %}
+        </div>
+    </header>
+
+    <div id="content">
+        <div class="wrapper">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    <footer>
+        <div class="wrapper">
+            Ribbit - A Twitter Clone Tutorial<img src="{% get_static_prefix %}gfx/logo-nettuts.png">
+        </div>
+    </footer>
+
+
+    <script src="{% get_static_prefix %}script/less.js" type="text/javascript"></script>
+    <script src="{% get_static_prefix %}script/jquery.js" type="text/javascript"></script>
+    <script src="{% get_static_prefix %}script/common.js" type="text/javascript"></script>
+    <script src="{% get_static_prefix %}script/main.js" type="text/javascript"></script>
+	{% for script in scripts %}
+		<script src="{% get_static_prefix %}script/{{script}}.js" type="text/javascript"></script>
+	{% endfor %}
+</body>
+</html>

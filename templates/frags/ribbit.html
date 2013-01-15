@@ -1,0 +1,17 @@
+{% load static %}
+{% load ribbit_extra %}
+
+<div class="ribbitWrapper">
+    <img class="avatar" src="{% get_static_prefix %}gfx/user2.png">
+    <span class="name">{{ ribbit.user.first_name }} {{ ribbit.user.last_name }}</span>
+    <span class="username">@{{ ribbit.user.username }}</span>
+    <span class="time">
+        {% if ribbit.old < 24%}
+            {{ ribbit.old }}h
+        {% else %}
+            {{ ribbit.created_at|date:"N d." }}
+        {% endif %}
+    </span>
+    <div class="clear"></div>
+    <p class="ribbit">{{ ribbit.ribbit }}</p>
+</div>

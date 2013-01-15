@@ -1,0 +1,27 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block subject %}
+    Login
+{% endblock %}
+
+{% block content %}
+    <img src="{% get_static_prefix %}gfx/frog.jpg">
+    <div class="panel right">
+        <h1>New to Ribbit?</h1>
+        <p>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <input name="username" type="text" placeholder="Username">
+            <input name="firstname" type="text" placeholder="Last name">
+            <input name="lastname" type="text" placeholder="First name">
+            <input name="email" type="text" placeholder="E-mail">
+            <input name="password" type="password" placeholder="Password">
+            <input name="password2" type="password" placeholder="Password again">
+            <input type="submit" value="Create Account">
+        </form>
+        </p>
+    </div>
+{% endblock %}

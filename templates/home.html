@@ -1,0 +1,44 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block subject %}
+    Login
+{% endblock %}
+
+{% block content %}
+    <div id="createRibbit" class="panel right">
+        <h1>Create a Ribbit</h1>
+        <form class="ajax">
+            <textarea id="id-ribbit-field" name="text" class="ribbitText"></textarea>
+            <a href="#rebbit_save" class="submit save">Ribbit</a>
+        </form>
+    </div>
+    <div id="ribbits" class="panel left">
+        <h1>Your Ribbit Profile</h1>
+        <div class="ribbitWrapper">
+            <img class="avatar" src="{% get_static_prefix %}gfx/user1.png">
+            <span class="name">{{ user.first_name }} {{ user.last_name }}</span>
+            <span class="username">@{{ user.username }}</span>
+            <p>
+                {{ counts.ribbits }} Ribbits<span class="spacing">
+                {{ counts.followers }} Followers</span><span class="spacing">
+                {{ counts.following }} Following</span><br>
+                Cras justo odio, dapibus ac facilisis in, egestas Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. <a href="#">http://net.tutsplus.com/tutorials/php/ ...</a>
+            </p>
+        </div>
+    </div>
+    <div class="panel left">
+        <h1>Your Ribbit Buddies</h1>
+        <div id="id-ribbits">
+            {% for ribbit in ribbits %}
+                {% include 'frags/ribbit.html' %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div id="id-templates" style="display: none">
+
+    </div>
+{% endblock %}
