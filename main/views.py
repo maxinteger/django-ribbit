@@ -50,7 +50,7 @@ def regist(request):
 
     if len(User.objects.filter(username__exact=uname)) > 0:
         errors.append("Existing username")
-    if mail is None or len(mail) < 0:
+    if mail is None or len(mail) < 1:
         errors.append("Invalid email")
     if len(User.objects.filter(email__exact=mail)) > 0:
         errors.append("Existing email")
@@ -60,7 +60,7 @@ def regist(request):
         errors.append("Second password not match with first")
 
     if len(errors) > 0:
-        request.POST.clear()
+        #request.POST.clear()
         return django.contrib.auth.views.login(request, 'login.html', extra_context={'regist_errors': errors})
     else:
         user = User.objects.create_user(uname, mail, pw1)

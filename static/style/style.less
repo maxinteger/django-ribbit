@@ -1,6 +1,7 @@
 @text-color: #3F3E3D;
 @border-color: #D2D2D2;
 @content-width: 860px;
+@placeholder-color: #bbbbbb;
 
 .antialiased (@color) {
 	color: @color;
@@ -18,14 +19,11 @@
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@c1', endColorstr='@c4', GradientType=0);
 }
 
-* {
-	font-family: Helvetica, Arial, sans-serif;
-	color: @text-color;
-}
-
 body {
 	background: white url(../gfx/bg.png);
 	margin: 0; padding: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    color: @text-color;
 }
 
 input {
@@ -40,6 +38,18 @@ input {
 	&:focus {
 		background: #FFFDF2;
 	}
+}
+::-webkit-input-placeholder {
+  color: @placeholder-color;
+}
+:-moz-placeholder {
+  color: @placeholder-color;
+}
+::-moz-placeholder {
+  color: @placeholder-color;
+}
+:-ms-input-placeholder {
+  color: @placeholder-color;
 }
 
 input[type="submit"],
@@ -71,6 +81,10 @@ a {
 .wrapper {
 	width: @content-width;
 	margin: auto;
+}
+
+ul {
+  list-style: none;
 }
 
 header {
@@ -135,6 +149,15 @@ header {
 					height: 160px;
 					border: 1px solid @border-color;
 				}
+                .error{
+                    color: red;
+                    border: 1px solid red;
+                    border-radius: 3px;
+                    color: red;
+                    margin: 15px auto;
+                    padding: 10px;
+                    background-color: #fee;
+                }
 			}
 			&.left {
 				width: @content-width - 327;
