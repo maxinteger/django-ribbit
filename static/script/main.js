@@ -24,6 +24,13 @@ var Page = Page || (function (){
 	return intf;
 }());
 
+
+var Ribbit = function(data){
+    if (!Ribbit.TEMPLATE) throw "Invalid template";
+}
+
+Ribbit.TEMPLATE = $()
+
 (function(){
     // DJango AJAX Token
     $.ajaxSetup({
@@ -57,15 +64,7 @@ $(function (){
         });
     }
 
-    var $ribbitList = $('#id-ribbits'),
-        $ribbitTemplate = $('#id-ribbit-template');
-
-    function creteRibbit(params){
-        var newRibbit = $ribbitTemplate.close().appendTo($ribbitList);
-        for (var k in params){
-            newRibbit.find('.'+k).text(params[k]);
-        }
-    }
+    var $ribbitList = $('#id-ribbits');
 
     $('form.ajax a.save').click(function(){
         submit(this, function(data){
@@ -73,4 +72,19 @@ $(function (){
             $ribbitList.prepend($(data));
         });
     });
+
+    $('a.follow').click(function(){
+        var _this = $(this), url,
+            params = {
+                user_id: _this.attr('href').substr(1)
+            };
+        if (_this.has('fallowed')){
+            url = 'post/following';
+        } else {
+            url = 'post/unfollowing';
+        }
+        $.post(url, params, function(){
+
+        });
+    })
 });

@@ -18,5 +18,7 @@ urlpatterns += patterns('',
     url(r'^$', 'main.views.home'),
     url(r'^regist$', 'main.views.regist'),
     url(r'^rebbit_save$', 'main.views.rebbit_save'),
+    url(r'^post/following$', 'main.views.user_follow'),
+    url(r'^post/unfollowing$', 'main.views.user_unfollow'),
 )
 urlpatterns += staticfiles_urlpatterns()

@@ -13,21 +13,24 @@ from main.models import *
 @login_required(login_url='login')
 def home(request):
     user = request.user
-    users = list(Follows.objects.filter(user__exact=user.id)) + [user.id]
+    falowed_users = list(Follows.objects.filter(user__exact=user.id))
     ribbits = Ribbits.objects\
-        .filter(user_id__in=users)\
+        .filter(user_id__in=falowed_users+[user.id])\
         .extra(select={'old':'TIMESTAMPDIFF(HOUR, created_at, NOW())'})\
-        .order_by('-created_at')
+    .order_by('-created_at')
 
     params = {
         'user': user,
+        'users': auth.User.objects.all(),
+        'followed': falowed_users,
+        'followers': Follows.objects.filter(followee__exact=user.id),
         'counts':{
-              'ribbits' : ribbits.count(),
-              'followers': Follows.objects.filter(user_id__exact=user.id).count(),
-              'following': Follows.objects.filter(followee_id__exact=user.id).count()
+            'ribbits' : ribbits.count(),
+            'followers': Follows.objects.filter(user_id__exact=user.id).count(),
+            'following': Follows.objects.filter(followee_id__exact=user.id).count()
         },
         'ribbits': ribbits,
-    }
+        }
     params.update(csrf(request))
     return render_to_response('home.html', params)
 
@@ -71,3 +74,17 @@ def regist(request):
         if user is not None:
             login(request, user)
             return redirect('main.views.home')
+
+
+@login_required(login_url='login')
+def user_follow(request):
+    id = int(request.POST.get('user_id'))
+    Follows(user=request.user, followee=auth.User.objects.get(pk=id)).save()
+    return JSONResponseMixin()
+
+
+@login_required(login_url='login')
+def user_unfallow(request):
+    id = int(request.POST.get('user_id'))
+    Follows.objects.filter(user__exact=request.user.id, followee__exact=id).delete()
+    return JSONResponseMixin()

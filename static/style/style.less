@@ -55,6 +55,7 @@ input {
 input[type="submit"],
 a.submit {
 	height: 36px;
+    line-height: 36px;
 	width: auto;
 	border: 1px solid #7BC574;
 	border-radius: 2px;
@@ -64,6 +65,7 @@ a.submit {
 	padding: 0 20px;
 	cursor: pointer;
 	.gradient4f(0%, #8CD585, 23%, #82CD7A, 86%, #55AD4C, 100%, #4FA945);
+    display: inline-block;
 }
 
 .clear{
@@ -133,100 +135,111 @@ header {
 			border-radius: 6px;
 			float: left;
 		}
-		div.panel {
-			border: 1px solid @border-color;
-			background: white;
-			margin: 0;
-			margin-bottom: 29px;
-			border-radius: 6px;
-			font-size: 14px;
-			&.right {
-				width: 303px;
-				min-height: 300px;
-				float: right;
-				textarea.ribbitText {
-					width: 249px;
-					height: 160px;
-					border: 1px solid @border-color;
-				}
-                .error{
-                    color: red;
-                    border: 1px solid red;
-                    border-radius: 3px;
-                    color: red;
-                    margin: 15px auto;
-                    padding: 10px;
-                    background-color: #fee;
-                }
-			}
-			&.left {
-				width: @content-width - 327;
-				float: left;
-				div.ribbitWrapper {
-					padding: 15px 0;
-					border-bottom: 1px solid @border-color;
-                    min-height: 50px;
-                    cursor: pointer;
-                    &:hover{
-                        background: #f6f6f6;
-                    }
-					&:last-child {
-						border: none;
-					}
-					span {
-						&.name {
-							font-size: 18px;
-							color: #58B84E;
-						}
-                        &.username{
-                          font-size: 90%;
-                          color: #aaaaaa;
-                        }
-						&.time {
-                            background: #F5F5F5;
-                            border-radius: 3px;
-                            color: #AAAAAA;
-                            float: right;
-                            font-size: 12px;
-                            margin-right: 10px;
-                            padding: 2px;
-						}
-					}
-					img.avatar {
-						margin: 0 19px 0 20px;
-						float: left;
-					}
-					p {
-						margin: 5px 50px 0 90px;
-						padding: 0;
-						text-align: justify;
-						line-height: 1.5;
-						span.spacing {
-							padding-left: 9px;
-							margin-left: 9px;
-							height: 10px;
-							border-left: 1px solid @border-color;
-						}
-					}
-				}
-			}
+        .right {
+          width: 303px;
+          min-height: 300px;
+          float: right;
+          textarea.ribbitText {
+            width: 249px;
+            height: 160px;
+            border: 1px solid @border-color;
+            margin: 15px 0;
+            padding: 5px;
+          }
+          .error{
+            color: red;
+            border: 1px solid red;
+            border-radius: 3px;
+            color: red;
+            margin: 15px auto;
+            padding: 10px;
+            background-color: #fee;
+          }
+          .user-list > div{
+            min-height: 50px;
+            padding: 5px;
+            border-bottom: 1px solid #D2D2D2;
+            &:last-child{
+              border-bottom: none;
+            }
+          }
+        }
+        .left {
+          width: @content-width - 327;
+          float: left;
+          div.ribbitWrapper {
+            padding: 15px 0;
+            border-bottom: 1px solid @border-color;
+            min-height: 50px;
+            cursor: pointer;
+            &:hover{
+              background: #f6f6f6;
+            }
+            &:last-child {
+              border: none;
+            }
+            img.avatar {
+              margin: 0 19px 0 20px;
+              float: left;
+            }
+            p {
+              margin: 5px 50px 0 90px;
+              padding: 0;
+              text-align: justify;
+              line-height: 1.5;
+              span.spacing {
+                padding-left: 9px;
+                margin-left: 9px;
+                height: 10px;
+                border-left: 1px solid @border-color;
+              }
+            }
+          }
+        }
+      div.panel {
+        border: 1px solid @border-color;
+        background: white;
+        margin: 0;
+        margin-bottom: 29px;
+        border-radius: 6px;
+        font-size: 14px;
+        padding-bottom:15px;
+          form {
+              padding: 0 23px;
+          }
+          h1 {
+              border-bottom: 1px solid @border-color;
+              margin: 0;
+              font-weight: normal;
+              font-size: 18px;
+              padding: 13px 23px;
+              height: 23px;
+          }
+          p {
+              padding: 0 24px;
+              margin: 18px 0;
+          }
 
-			form {
-				padding: 0 23px;
-			}
-			h1 {
-				border-bottom: 1px solid @border-color;
-				margin: 0;
-				font-weight: normal;
-				font-size: 18px;
-				padding: 13px 23px;
-				height: 23px;
-			}
-			p {
-				padding: 0 24px;
-				margin: 18px 0;
-			}
-		}
+        span {
+          &.name {
+            font-size: 18px;
+            color: #58B84E;
+          }
+          &.username{
+            font-size: 90%;
+            color: #aaaaaa;
+          }
+          &.time {
+            background: #F5F5F5;
+            border-radius: 3px;
+            color: #AAAAAA;
+            float: right;
+            font-size: 12px;
+            margin-right: 10px;
+            padding: 2px;
+          }
+        }
+      }
 	}
 }
 
