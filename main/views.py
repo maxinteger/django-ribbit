@@ -1,28 +1,63 @@
-import re
 import django
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.models import User
-from django.shortcuts import  render_to_response, redirect
-from django.core.context_processors import csrf
+from django.contrib.auth.views import login as login_view
 from django.contrib.auth.decorators import login_required
-
-from util.dataview import JSONResponseMixin
+from django.core.context_processors import csrf
+from django.shortcuts import  render_to_response, redirect
+from django.template.loader import render_to_string
 
 from main.models import *
+from main.forms import *
+
+from util.dataview import render_to_json
+
+
+def login(request):
+    """User login"""
+    form = UserRegistrationForm()
+    return login_view(request, 'login.html', extra_context={'registration_form': form})
+
+
+def registration(request):
+    """User registration"""
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+
+            user = User.objects.create_user(username, email, password)
+            user.first_name = first_name
+            user.last_name = last_name
+            user.save()
+
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                auth_login(request, user)
+                return redirect('main.views.home')
+    else:
+        form = UserRegistrationForm()
+
+    return login_view(request, 'login.html', extra_context={'registration_form': form})
+
 
 @login_required(login_url='login')
 def home(request):
+    """Home screen"""
     user = request.user
-    falowed_users = list(Follows.objects.filter(user__exact=user.id))
+    followed_users = list(Follows.objects.filter(user__exact=user.id))
     ribbits = Ribbits.objects\
-        .filter(user_id__in=falowed_users+[user.id])\
-        .extra(select={'old':'TIMESTAMPDIFF(HOUR, created_at, NOW())'})\
-    .order_by('-created_at')
+        .filter(user_id__in=followed_users+[user.id])\
+        .order_by('-created_at')
 
     params = {
         'user': user,
         'users': auth.User.objects.all(),
-        'followed': falowed_users,
+        'followed': followed_users,
         'followers': Follows.objects.filter(followee__exact=user.id),
         'counts':{
             'ribbits' : ribbits.count(),
@@ -36,55 +71,43 @@ def home(request):
 
 
 @login_required(login_url='login')
-def rebbit_save(request):
+def ribbit_save(request):
+    """Sort message save"""
     ribbit = Ribbits(user=request.user, ribbit=request.POST.get('text'))
     ribbit.save()
     return render_to_response('frags/ribbit.html', {'ribbit': ribbit})
 
-
-def regist(request):
-    errors = []
-    uname = request.POST.get('username')
-    fname = request.POST.get('firstname')
-    lname = request.POST.get('lastname')
-    mail = request.POST.get('email')
-    pw1 = request.POST.get('password')
-    pw2 = request.POST.get('password2')
-
-    if len(User.objects.filter(username__exact=uname)) > 0:
-        errors.append("Existing username")
-    if mail is None or len(mail) < 1:
-        errors.append("Invalid email")
-    if len(User.objects.filter(email__exact=mail)) > 0:
-        errors.append("Existing email")
-    if len(pw1) < 6:
-        errors.append("Password too short")
-    if pw1 != pw2:
-        errors.append("Second password not match with first")
-
-    if len(errors) > 0:
-        #request.POST.clear()
-        return django.contrib.auth.views.login(request, 'login.html', extra_context={'regist_errors': errors})
-    else:
-        user = User.objects.create_user(uname, mail, pw1)
-        user.first_name = fname
-        user.last_name = lname
-        user.save()
-        user = authenticate(username=uname, password=pw1)
-        if user is not None:
-            login(request, user)
-            return redirect('main.views.home')
 
 
 @login_required(login_url='login')
 def user_follow(request):
     id = int(request.POST.get('user_id'))
     Follows(user=request.user, followee=auth.User.objects.get(pk=id)).save()
-    return JSONResponseMixin()
+
 
 
 @login_required(login_url='login')
-def user_unfallow(request):
-    id = int(request.POST.get('user_id'))
-    Follows.objects.filter(user__exact=request.user.id, followee__exact=id).delete()
-    return JSONResponseMixin()
+def user_unfollow(request):
+    pass
+
+
+@login_required(login_url='login')
+def get_ribbits(request):
+    user = request.user
+    followed_users = list(Follows.objects.filter(user__exact=user.id))
+    ribbits = Ribbits.objects.filter(user_id__in=followed_users+[user.id]).order_by('-created_at')
+
+    template_params = {
+        'user': user,
+        'ribbits': ribbits,
+    }
+    #params.update(csrf(request))
+    json = {
+        'ribbits' : render_to_string('frags/ribbits.html', template_params),
+        'counts':{
+            'ribbits' : ribbits.count(),
+            'followers': Follows.objects.filter(user_id__exact=user.id).count(),
+            'following': Follows.objects.filter(followee_id__exact=user.id).count()
+        },
+    }
+    return render_to_json(json)

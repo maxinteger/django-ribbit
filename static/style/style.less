@@ -66,6 +66,7 @@ a.submit {
 	cursor: pointer;
 	.gradient4f(0%, #8CD585, 23%, #82CD7A, 86%, #55AD4C, 100%, #4FA945);
     display: inline-block;
+    margin-bottom: 15px;
 }
 
 .clear{
@@ -83,6 +84,13 @@ a {
 .wrapper {
 	width: @content-width;
 	margin: auto;
+}
+
+.pull-left{
+  float: left;
+}
+.pull-right{
+  float: right;
 }
 
 ul {
@@ -146,14 +154,12 @@ header {
             margin: 15px 0;
             padding: 5px;
           }
-          .error{
+          .errorlist{
             color: red;
-            border: 1px solid red;
-            border-radius: 3px;
-            color: red;
-            margin: 15px auto;
-            padding: 10px;
-            background-color: #fee;
+            font-size: 10px;
+            margin: 0;
+            padding: 1px 5px;
+            text-align: right;
           }
           .user-list > div{
             min-height: 50px;
@@ -203,7 +209,6 @@ header {
         margin-bottom: 29px;
         border-radius: 6px;
         font-size: 14px;
-        padding-bottom:15px;
           form {
               padding: 0 23px;
           }

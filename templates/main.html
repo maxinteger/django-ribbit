@@ -30,11 +30,11 @@
                 <form method="post" action="{% url django.contrib.auth.views.logout %}">
                     {% csrf_token %}
                     <input id="btnLogOut" type="submit" value="logout" />
-                    <input type="hidden" name="next" value="{{ next|default:"/ribbit" }}" />
+                    <input type="hidden" name="next" value="{% url main.views.home %}" />
                 </form>
                 <span id="id-username">{{ user.username }}</span>
             {% else %}
-                <form method="post" action="{% url django.contrib.auth.views.login %}">
+                <form method="post" action="{% url main.views.login %}">
                     {% csrf_token %}
                     {{ form.username }}
                     {{ form.password }}

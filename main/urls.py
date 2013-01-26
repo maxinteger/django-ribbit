@@ -3,22 +3,14 @@ __author__ = 'vadasz'
 from django.conf.urls import patterns, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-urlpatterns = patterns('main.views',
-    #    url(r'^(?P<mail_id>\d+)/view/$', 'view'),
-
-    #    url(r'^(?P<mail_id>\d+)/view/$', 'view'),
-    #    url(r'^(?P<mail_id>\d+|new)/edit/$', 'edit'),
-    #    url(r'^save/$', 'save'),
-
-    #    url(r'^(?P<mail_id>\d+|new)/test/$', 'test'),
-)
-urlpatterns += patterns('',
-    url(r'^login$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
+urlpatterns = patterns('',
+    url(r'^login$', 'main.views.login'),
     url(r'^logout$', 'django.contrib.auth.views.logout', {'template_name': 'login.html'}),
     url(r'^$', 'main.views.home'),
-    url(r'^regist$', 'main.views.regist'),
-    url(r'^rebbit_save$', 'main.views.rebbit_save'),
+    url(r'^regist$', 'main.views.registration'),
+    url(r'^ribbit_save$', 'main.views.ribbit_save'),
     url(r'^post/following$', 'main.views.user_follow'),
     url(r'^post/unfollowing$', 'main.views.user_unfollow'),
+    url(r'^post/ribbits$', 'main.views.get_ribbits'),
 )
 urlpatterns += staticfiles_urlpatterns()
