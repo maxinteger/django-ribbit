@@ -21,11 +21,17 @@
             <div class="user-list">
                 {% for u in users %}
                     {% if u != user %}
-                        <div class="user">
+                        <div class="user-item">
                             <img class="avatar" src="{% get_static_prefix %}gfx/user1.png" />
-                            <span class="name">{{ u.first_name }} {{ u.last_name }}</span>
-                            <span class="username">@{{ u.username }}</span>
-                            <a class="follow {% if u not in fallowed %}followed{% endif %}" href="#{{ u.id }}">follow</a>
+                            <div class="container">
+                                <span class="user-data">
+                                    <span class="name">{{ u.first_name }} {{ u.last_name }}</span>
+                                    <span class="username">@{{ u.username }}</span>
+                                </span>
+                                <div class="links">
+                                    <a class="follow {% if u not in fallowed %}followed{% endif %}" href="#{{ u.id }}">follow</a>
+                                </div>
+                            </div>
                         </div>
                     {% endif %}
                 {% endfor %}
@@ -38,8 +44,10 @@
             <h1>Your Ribbit Profile</h1>
             <div class="ribbitWrapper">
                 <img class="avatar" src="{% get_static_prefix %}gfx/user1.png">
-                <span class="name">{{ user.first_name }} {{ user.last_name }}</span>
-                <span class="username">@{{ user.username }}</span>
+                <span class="user-data">
+                    <span class="name">{{ user.first_name }} {{ user.last_name }}</span>
+                    <span class="username">@{{ user.username }}</span>
+                </span>
                 <p>
                     {{ counts.ribbits }} Ribbits<span class="spacing">
                     {{ counts.followers }} Followers</span><span class="spacing">

@@ -6,8 +6,10 @@
     <div class="ribbit-content">
 
         <div class="ribbit-header">
-            <span class="name">{{ ribbit.user.first_name }} {{ ribbit.user.last_name }}</span>
-            <span class="username">@{{ ribbit.user.username }}</span>
+            <span class="user-data">
+                <span class="name">{{ ribbit.user.first_name }} {{ ribbit.user.last_name }}</span>
+                <span class="username">@{{ ribbit.user.username }}</span>
+            </span>
             <span title="{{ ribbit.created_at|date:"" }}" class="time pull-right">
                 {% if ribbit.published_hours_ago < 24%}
                     {{ ribbit.published_hours_ago }}h
@@ -17,7 +19,7 @@
             </span>
         </div>
         <div class="ribbit">{{ ribbit.ribbit }}</div>
-        <div class="ribbit-footer">
+        <div class="ribbit-footer links">
             <a href="#">Expand</a>
 
             <a href="#">Reply</a>

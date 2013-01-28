@@ -3,41 +3,36 @@
 @content-width: 860px;
 @placeholder-color: #bbbbbb;
 
-.antialiased (@color) {
-	color: @color;
-	text-shadow: @color 0 0 1px;
-}
-
 .gradient4f (@p1, @c1, @p2, @c2, @p3, @c3, @p4, @c4) {
-	background: @c1;
-	background: -moz-linear-gradient(top,  @c1 @p1,  @c2 @p2,  @c3 @p3,  @c4 @p4);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(@p1, @c1), color-stop(@p2, @c2), color-stop(@p3, @c3), color-stop(@p4, @c4));
-	background: -webkit-linear-gradient(top, @c1 @p1, @c2 @p2, @c3 @p3, @c4 @p4);
-	background: -o-linear-gradient(top, @c1 @p1, @c2 @p2, @c3 @p3, @c4 @p4);
-	background: -ms-linear-gradient(top, @c1 @p1, @c2 @p2, @c3 @p3, @c4 @p4);
-	background: linear-gradient(to bottom, @c1 @p1, @c2 @p2, @c3 @p3, @c4 @p4);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@c1', endColorstr='@c4', GradientType=0);
+  background: @c1;
+  background: -moz-linear-gradient(top,  @c1 @p1,  @c2 @p2,  @c3 @p3,  @c4 @p4);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(@p1, @c1), color-stop(@p2, @c2), color-stop(@p3, @c3), color-stop(@p4, @c4));
+  background: -webkit-linear-gradient(top, @c1 @p1, @c2 @p2, @c3 @p3, @c4 @p4);
+  background: -o-linear-gradient(top, @c1 @p1, @c2 @p2, @c3 @p3, @c4 @p4);
+  background: -ms-linear-gradient(top, @c1 @p1, @c2 @p2, @c3 @p3, @c4 @p4);
+  background: linear-gradient(to bottom, @c1 @p1, @c2 @p2, @c3 @p3, @c4 @p4);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@c1', endColorstr='@c4', GradientType=0);
 }
 
 body {
-	background: white url(../gfx/bg.png);
-	margin: 0; padding: 0;
-    font-family: Helvetica, Arial, sans-serif;
-    color: @text-color;
+  background: white url(../gfx/bg.png);
+  margin: 0; padding: 0;
+  font-family: Ubuntu, Helvetica, Arial, sans-serif;
+  color: @text-color;
 }
 
 input {
-	width: 236px;
-	height: 38px;
-	border: 1px solid @border-color;
-	padding: 0 10px;
-	outline: none;
-	font-size: 17px;
-    margin-bottom: 10px;
-    border-radius: 2px;
-	&:focus {
-		background: #FFFDF2;
-	}
+  width: 236px;
+  height: 38px;
+  border: 1px solid @border-color;
+  padding: 0 10px;
+  outline: none;
+  font-size: 17px;
+  margin-bottom: 10px;
+  border-radius: 2px;
+  &:focus {
+    background: #FFFDF2;
+  }
 }
 ::-webkit-input-placeholder {
   color: @placeholder-color;
@@ -54,19 +49,19 @@ input {
 
 input[type="submit"],
 a.submit {
-	height: 36px;
-    line-height: 36px;
-	width: auto;
-	border: 1px solid #7BC574;
-	border-radius: 2px;
-	color: white;
-	font-size: 12px;
-	font-weight: bold;
-	padding: 0 20px;
-	cursor: pointer;
-	.gradient4f(0%, #8CD585, 23%, #82CD7A, 86%, #55AD4C, 100%, #4FA945);
-    display: inline-block;
-    margin-bottom: 15px;
+  display: inline-block;
+  width: auto;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 20px;
+  margin-bottom: 15px;
+  border: 1px solid #7BC574;
+  border-radius: 2px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  .gradient4f(0%, #8CD585, 23%, #82CD7A, 86%, #55AD4C, 100%, #4FA945);
+  cursor: pointer;
 }
 
 .clear{
@@ -75,16 +70,13 @@ a.submit {
 }
 
 a {
-	text-decoration: none;
-	&:hover {
-		text-decoration: underline;
-	}
+  text-decoration: none;
+    font-size: 12px;
+  &:hover {
+      text-decoration: underline;
+  }
 }
 
-.wrapper {
-	width: @content-width;
-	margin: auto;
-}
 
 .pull-left{
   float: left;
@@ -97,155 +89,181 @@ ul {
   list-style: none;
 }
 
+.wrapper {
+  width: @content-width;
+  margin: auto;
+}
+
 header {
-	background: url(../gfx/bg-header.png);
-	height: 85px;
-	width: 100%;
-	div.wrapper {
-		padding: 11px 0;
-		img {
-			position: relative;
-			top: 10px;
-			margin: 0 15px 0 0;
-		}
-		span {
-			font-size: 18px;
-			margin: 0 42px 0 0;
-		}
-		form {
-			display: inline;
-			input {
-				margin: 0 0 0 14px;
-                width: 180px;
-			}
-            input[type="submit"] {
-              width: auto;
-            }
-		}
-		#btnLogOut {
-			float: right;
-			margin: 14px 0 0 0;
-		}
-        #id-username{
-            font-weight: bold;
-            float: right;
-            line-height: 65px;
-        }
+  background: url(../gfx/bg-header.png);
+  height: 85px;
+  width: 100%;
+  div.wrapper {
+    padding: 11px 0;
+    img {
+      position: relative;
+      top: 10px;
+      margin: 0 15px 0 0;
+    }
+    span {
+      font-size: 18px;
+      margin: 0 42px 0 0;
 	}
+	form {
+      display: inline;
+      input {
+        margin: 0 0 0 14px;
+        width: 180px;
+      }
+      input[type="submit"] {
+        width: auto;
+      }
+    }
+    #btnLogOut {
+      float: right;
+      margin: 14px 0 0 0;
+    }
+    #id-username{
+      font-weight: bold;
+      float: right;
+      line-height: 65px;
+    }
+  }
 }
 
 #content {
-	margin-bottom: 15px;
-	min-height: 560px;
-	div.wrapper {
-		margin: 38px auto;
-		img {
-			border-radius: 6px;
-			float: left;
-		}
-        .right {
-          width: 303px;
-          min-height: 300px;
-          float: right;
-          textarea.ribbitText {
-            width: 249px;
-            height: 160px;
-            border: 1px solid @border-color;
-            margin: 15px 0;
-            padding: 5px;
-          }
-          .errorlist{
-            color: red;
-            font-size: 10px;
-            margin: 0;
-            padding: 1px 5px;
-            text-align: right;
-          }
-          .user-list > div{
-            min-height: 50px;
-            padding: 5px;
-            border-bottom: 1px solid #D2D2D2;
-            &:last-child{
-              border-bottom: none;
-            }
-          }
-        }
-        .left {
-          width: @content-width - 327;
-          float: left;
-          div.ribbitWrapper {
-            padding: 15px 0;
-            border-bottom: 1px solid @border-color;
-            min-height: 50px;
-            cursor: pointer;
-            &:hover{
-              background: #f6f6f6;
-            }
-            &:last-child {
-              border: none;
-            }
-            img.avatar {
-              margin: 0 19px 0 20px;
-              float: left;
-            }
-            p {
-              margin: 5px 50px 0 90px;
-              padding: 0;
-              text-align: justify;
-              line-height: 1.5;
-              span.spacing {
-                padding-left: 9px;
-                margin-left: 9px;
-                height: 10px;
-                border-left: 1px solid @border-color;
-              }
-            }
-          }
-        }
-      div.panel {
-        border: 1px solid @border-color;
-        background: white;
-        margin: 0;
-        margin-bottom: 29px;
-        border-radius: 6px;
-        font-size: 14px;
-          form {
-              padding: 0 23px;
-          }
-          h1 {
-              border-bottom: 1px solid @border-color;
-              margin: 0;
-              font-weight: normal;
-              font-size: 18px;
-              padding: 13px 23px;
-              height: 23px;
-          }
-          p {
-              padding: 0 24px;
-              margin: 18px 0;
-          }
+  margin-bottom: 15px;
+  min-height: 560px;
+  div.wrapper {
+    margin: 38px auto;
+    img {
+      border-radius: 6px;
+    }
+    .links{
+      padding-top: 15px;
+    }
 
-        span {
-          &.name {
-            font-size: 18px;
-            color: #58B84E;
+    .right {
+      width: 303px;
+      min-height: 300px;
+      float: right;
+      textarea.ribbitText {
+        width: 249px;
+        height: 160px;
+        border: 1px solid @border-color;
+        margin: 15px 0;
+        padding: 5px;
+      }
+      .errorlist{
+        color: red;
+        font-size: 10px;
+        margin: 0;
+        padding: 1px 5px;
+        text-align: right;
+      }
+      .user-list > div{
+        min-height: 50px;
+        padding: 5px;
+        border-bottom: 1px solid #D2D2D2;
+        position:relative;
+        &:hover{
+          background-color: #f6f6f6;
+        }
+        &:last-child{
+          border-bottom: none;
+        }
+        .container{
+          margin-left: 60px;
+        }
+        img{
+          position: absolute;
+        }
+      }
+    }
+
+    .left {
+      width: @content-width - 327;
+      float: left;
+      div.ribbitWrapper {
+        img {
+          float: left;
+        }
+        padding: 15px 0;
+        border-bottom: 1px solid @border-color;
+        min-height: 50px;
+        cursor: pointer;
+        &:hover{
+          background: #f6f6f6;
+          .links{
+            display: block;
           }
-          &.username{
-            font-size: 90%;
-            color: #aaaaaa;
-          }
-          &.time {
-            background: #F5F5F5;
-            border-radius: 3px;
-            color: #AAAAAA;
-            float: right;
-            font-size: 12px;
-            margin-right: 10px;
-            padding: 2px;
+        }
+        &:last-child {
+          border: none;
+        }
+        img.avatar {
+          margin: 0 19px 0 20px;
+          float: left;
+        }
+        .ribbit-header .time{
+          background: #F5F5F5;
+          border-radius: 3px;
+          color: #AAAAAA;
+          float: right;
+          font-size: 12px;
+          margin-right: 10px;
+          padding: 2px;
+        }
+        p {
+          margin: 5px 50px 0 90px;
+          padding: 0;
+          text-align: justify;
+          line-height: 1.5;
+          span.spacing {
+            padding-left: 9px;
+            margin-left: 9px;
+            height: 10px;
+            border-left: 1px solid @border-color;
           }
         }
       }
-	}
+    }
+
+    div.panel {
+      border: 1px solid @border-color;
+      background: white;
+      margin: 0;
+      margin-bottom: 29px;
+      border-radius: 6px;
+      font-size: 14px;
+      form {
+        padding: 0 23px;
+      }
+      h1 {
+        border-bottom: 1px solid @border-color;
+        margin: 0;
+        font-weight: normal;
+        font-size: 18px;
+        padding: 13px 23px;
+        height: 23px;
+      }
+      p {
+        padding: 0 24px;
+        margin: 18px 0;
+      }
+    }
+  }
+}
+
+.user-data{
+  .name {
+    font-size: 18px;
+    color: #58B84E;
+  }
+  .username{
+    font-size: 90%;
+    color: #aaaaaa;
+  }
 }
 
 footer {
