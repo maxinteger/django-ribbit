@@ -1,0 +1,313 @@
+body {
+  background: #ffffff url(../gfx/bg.png);
+  margin: 0;
+  padding: 0;
+  font-family: Ubuntu, Helvetica, Arial, sans-serif;
+  color: #3f3e3d;
+}
+input {
+  width: 236px;
+  height: 38px;
+  border: 1px solid #d2d2d2;
+  padding: 0 10px;
+  outline: none;
+  font-size: 17px;
+  margin-bottom: 10px;
+  border-radius: 2px;
+}
+input:focus {
+  background: #FFFDF2;
+}
+::-webkit-input-placeholder {
+  color: #bbbbbb;
+}
+:-moz-placeholder {
+  color: #bbbbbb;
+}
+::-moz-placeholder {
+  color: #bbbbbb;
+}
+:-ms-input-placeholder {
+  color: #bbbbbb;
+}
+input[type="submit"],
+a.submit {
+  display: inline-block;
+  width: auto;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 20px;
+  margin-bottom: 15px;
+  border: 1px solid #7BC574;
+  border-radius: 2px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  background: #8cd585;
+  background: -moz-linear-gradient(top, #8cd585 0%, #82cd7a 23%, #55ad4c 86%, #4fa945 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8cd585), color-stop(23%, #82cd7a), color-stop(86%, #55ad4c), color-stop(100%, #4fa945));
+  background: -webkit-linear-gradient(top, #8cd585 0%, #82cd7a 23%, #55ad4c 86%, #4fa945 100%);
+  background: -o-linear-gradient(top, #8cd585 0%, #82cd7a 23%, #55ad4c 86%, #4fa945 100%);
+  background: -ms-linear-gradient(top, #8cd585 0%, #82cd7a 23%, #55ad4c 86%, #4fa945 100%);
+  background: linear-gradient(to bottom, #8cd585 0%, #82cd7a 23%, #55ad4c 86%, #4fa945 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@c1', endColorstr='@c4', GradientType=0);
+  cursor: pointer;
+}
+.clear {
+  float: none;
+  clear: both;
+}
+a {
+  text-decoration: none;
+  font-size: 12px;
+}
+a:hover {
+  text-decoration: underline;
+}
+.animation {
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+ul {
+  list-style: none;
+}
+.wrapper {
+  width: 860px;
+  margin: auto;
+}
+header {
+  background: url(../gfx/bg-header.png);
+  height: 85px;
+  width: 100%;
+}
+header .user-data {
+  float: right;
+  margin: 25px 20px 0 0;
+}
+header div.wrapper {
+  padding: 11px 0;
+}
+header div.wrapper img {
+  position: relative;
+  top: 10px;
+  margin: 0 15px 0 0;
+}
+header div.wrapper span {
+  font-size: 18px;
+}
+header div.wrapper form {
+  display: inline;
+}
+header div.wrapper form input {
+  margin: 0 0 0 14px;
+  width: 180px;
+}
+header div.wrapper form input[type="submit"] {
+  width: auto;
+}
+header div.wrapper #btn-logout {
+  float: right;
+  margin: 14px 0 0 0;
+}
+header div.wrapper #id-username {
+  font-weight: bold;
+  float: right;
+  line-height: 65px;
+}
+#content {
+  margin-bottom: 15px;
+  min-height: 560px;
+}
+#content div.wrapper {
+  margin: 20px auto;
+}
+#content div.wrapper img {
+  border-radius: 6px;
+}
+#content div.wrapper .links {
+  padding-top: 15px;
+}
+#content div.wrapper .right {
+  width: 303px;
+  min-height: 300px;
+  float: right;
+}
+#content div.wrapper .right textarea.ribbit-text {
+  width: 249px;
+  height: 30px;
+  border: 1px solid #d2d2d2;
+  margin: 15px 0;
+  padding: 5px;
+  border-radius: 3px;
+}
+#content div.wrapper .right textarea.ribbit-text:focus {
+  height: 160px;
+  border: 1px solid #72f765;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;
+}
+#content div.wrapper .right .errorlist {
+  color: red;
+  font-size: 10px;
+  margin: 0;
+  padding: 1px 5px;
+  text-align: right;
+}
+#content div.wrapper .right .user-list > div {
+  min-height: 50px;
+  padding: 10px;
+  border-bottom: 1px solid #d2d2d2;
+  position: relative;
+}
+#content div.wrapper .right .user-list > div:hover {
+  background-color: #f6f6f6;
+}
+#content div.wrapper .right .user-list > div:last-child {
+  border-bottom: none;
+  border-radius: 0 0 5px 5px;
+}
+#content div.wrapper .right .user-list > div .container {
+  margin-left: 70px;
+}
+#content div.wrapper .right .user-list > div img {
+  position: absolute;
+}
+#content div.wrapper .right .stats {
+  border-top: 1px solid #d2d2d2;
+}
+#content div.wrapper .right .stats .item {
+  display: block;
+  float: left;
+  width: 33%;
+  border-left: 1px solid #d2d2d2;
+  line-height: 20px;
+  padding: 10px 0;
+  text-align: center;
+}
+#content div.wrapper .right .stats .item:first-child {
+  border: none;
+  border-bottom-left-radius: 5px;
+}
+#content div.wrapper .right .stats .item:last-child {
+  border-bottom-right-radius: 5px;
+}
+#content div.wrapper .right .stats .item:hover {
+  background-color: #f6f6f6;
+}
+#content div.wrapper .right .stats .item em {
+  color: #AAAAAA;
+  font-style: normal;
+  font-size: 12px;
+}
+#content div.wrapper .left {
+  width: 533px;
+  float: left;
+}
+#content div.wrapper .left #id-ribbit-load {
+  display: none;
+  background: url('../gfx/loadinfo-small.gif') no-repeat center center;
+  height: 40px;
+}
+#content div.wrapper .left div.ribbit-wrapper {
+  padding: 15px 0;
+  border-bottom: 1px solid #d2d2d2;
+  min-height: 50px;
+  cursor: pointer;
+}
+#content div.wrapper .left div.ribbit-wrapper img {
+  position: absolute;
+}
+#content div.wrapper .left div.ribbit-wrapper .ribbit-content {
+  margin-left: 90px;
+}
+#content div.wrapper .left div.ribbit-wrapper .links {
+  visibility: hidden;
+}
+#content div.wrapper .left div.ribbit-wrapper .links a {
+  padding: 0 3px;
+}
+#content div.wrapper .left div.ribbit-wrapper:hover {
+  background: #f6f6f6;
+}
+#content div.wrapper .left div.ribbit-wrapper:hover .links {
+  visibility: visible;
+}
+#content div.wrapper .left div.ribbit-wrapper:last-child {
+  border: none;
+  border-radius: 0 0 5px 5px;
+}
+#content div.wrapper .left div.ribbit-wrapper img.avatar {
+  margin: 0 19px 0 20px;
+  float: left;
+}
+#content div.wrapper .left div.ribbit-wrapper .ribbit-header .time {
+  background: #F5F5F5;
+  border-radius: 3px;
+  color: #AAAAAA;
+  float: right;
+  font-size: 12px;
+  margin-right: 10px;
+  padding: 2px 5px;
+}
+#content div.wrapper .left div.ribbit-wrapper p {
+  margin: 5px 50px 0 90px;
+  padding: 0;
+  text-align: justify;
+  line-height: 1.5;
+}
+#content div.wrapper .left div.ribbit-wrapper p span.spacing {
+  padding-left: 9px;
+  margin-left: 9px;
+  height: 10px;
+  border-left: 1px solid #d2d2d2;
+}
+#content div.wrapper div.panel {
+  border: 1px solid #d2d2d2;
+  background: white;
+  margin: 0;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+#content div.wrapper div.panel form {
+  padding: 0 23px;
+}
+#content div.wrapper div.panel h1 {
+  border-bottom: 1px solid #d2d2d2;
+  margin: 0;
+  font-weight: normal;
+  font-size: 18px;
+  padding: 10px 23px;
+  height: 23px;
+}
+#content div.wrapper div.panel p {
+  padding: 0 24px;
+  margin: 18px 0;
+}
+.user-data .name {
+  font-size: 18px;
+  color: #58B84E;
+}
+.user-data .username {
+  font-size: 90%;
+  color: #aaaaaa;
+}
+footer {
+  background: url(../gfx/bg-footer.png);
+  height: 150px;
+  font-size: 14px;
+  clear: both;
+}
+footer div.wrapper {
+  padding: 15px;
+}
+footer div.wrapper img {
+  float: right;
+}

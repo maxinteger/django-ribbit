@@ -1,0 +1,22 @@
+{% extends 'frags/panel.html' %}
+{% load static %}
+
+{% block title%}Users{% endblock %}
+
+{% block content %}
+    <div class="user-list">
+        {% for u in users %}
+            {% if u != user %}
+                <div class="user-item">
+                    <img class="avatar" src="{% get_static_prefix %}gfx/user1.png" />
+                    <div class="container">
+                        {% include 'frags/user-data.html' %}
+                        <div class="links">
+                            <a class="follow {% if u not in fallowed %}followed{% endif %}" href="#{{ u.id }}">follow</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

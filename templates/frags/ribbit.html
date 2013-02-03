@@ -1,30 +1,25 @@
 {% load static %}
-{% load ribbit_extra %}
+{% load angularjs %}
 
-<div class="ribbitWrapper">
+<div class="ribbit-wrapper" ng-cloak ng-repeat="ribbit in ribbits">
     <img class="avatar" src="{% get_static_prefix %}gfx/user2.png">
     <div class="ribbit-content">
 
         <div class="ribbit-header">
             <span class="user-data">
-                <span class="name">{{ ribbit.user.first_name }} {{ ribbit.user.last_name }}</span>
-                <span class="username">@{{ ribbit.user.username }}</span>
+                <span class="name">{% ng ribbit.user.first_name %} {% ng ribbit.user.last_name %}</span>
+                <span class="username">@{% ng  user.username %}</span>
             </span>
-            <span title="{{ ribbit.created_at|date:"" }}" class="time pull-right">
-                {% if ribbit.published_hours_ago < 24%}
-                    {{ ribbit.published_hours_ago }}h
-                {% else %}
-                    {{ ribbit.created_at|date:"N d." }}
-                {% endif %}
+            <span title="{% ng ribbit.created_at_epoch | date:'medium' %}" class="time pull-right">
+                {% ng ribbit.created_at_epoch | date:'MMM. d.' %}
             </span>
         </div>
-        <div class="ribbit">{{ ribbit.ribbit }}</div>
+        <div class="ribbit">{% ng ribbit.ribbit %}</div>
         <div class="ribbit-footer links">
-            <a href="#">Expand</a>
-
-            <a href="#">Reply</a>
-            <a href="#">Retweet</a>
-            <a href="#">Favorite</a>
+            <a href="#">Expand</a> &bull;
+            <a href="#">Reply</a> &bull;
+            <a href="#">Retweet</a> &bull;
+            <a href="#">Favorite</a> &bull;
             <a href="#">More</a>
         </div>
     </div>

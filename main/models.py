@@ -1,3 +1,4 @@
+import time
 from django.db import models
 from django.contrib.auth import models as auth
 from django.utils import timezone
@@ -31,6 +32,19 @@ class Ribbits(models.Model):
 
     def __unicode__(self):
         return self.ribbit
+
+    def toJSON(self):
+        return {
+            'user': {
+                'id' : self.user.id,
+                'username': self.user.username,
+                'first_name': self.user.first_name,
+                'last_name' : self.user.last_name
+            },
+            'ribbit': self.ribbit,
+            'created_at_epoch': int(time.mktime(self.created_at.timetuple())*1000),
+            'published_hours_ago' : self.published_hours_ago
+        }
 
 
 class UserProfile(models.Model):

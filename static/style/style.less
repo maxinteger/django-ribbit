@@ -3,6 +3,9 @@
 @content-width: 860px;
 @placeholder-color: #bbbbbb;
 
+@border-color: #d2d2d2;
+@hover-bg-color: #f6f6f6;
+
 .gradient4f (@p1, @c1, @p2, @c2, @p3, @c3, @p4, @c4) {
   background: @c1;
   background: -moz-linear-gradient(top,  @c1 @p1,  @c2 @p2,  @c3 @p3,  @c4 @p4);
@@ -77,6 +80,13 @@ a {
   }
 }
 
+.animation{
+  -webkit-transition: all 0.2s linear;
+     -moz-transition: all 0.2s linear;
+       -o-transition: all 0.2s linear;
+          transition: all 0.2s linear;
+}
+
 
 .pull-left{
   float: left;
@@ -98,6 +108,10 @@ header {
   background: url(../gfx/bg-header.png);
   height: 85px;
   width: 100%;
+  .user-data{
+    float: right;
+    margin: 25px 20px 0 0;
+  }
   div.wrapper {
     padding: 11px 0;
     img {
@@ -107,7 +121,6 @@ header {
     }
     span {
       font-size: 18px;
-      margin: 0 42px 0 0;
 	}
 	form {
       display: inline;
@@ -119,7 +132,7 @@ header {
         width: auto;
       }
     }
-    #btnLogOut {
+    #btn-logout {
       float: right;
       margin: 14px 0 0 0;
     }
@@ -135,7 +148,7 @@ header {
   margin-bottom: 15px;
   min-height: 560px;
   div.wrapper {
-    margin: 38px auto;
+    margin: 20px auto;
     img {
       border-radius: 6px;
     }
@@ -147,12 +160,18 @@ header {
       width: 303px;
       min-height: 300px;
       float: right;
-      textarea.ribbitText {
+      textarea.ribbit-text {
         width: 249px;
-        height: 160px;
+        height: 30px;
         border: 1px solid @border-color;
         margin: 15px 0;
         padding: 5px;
+        border-radius: 3px;
+        &:focus{
+          height: 160px;
+          border: 1px solid #72f765;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;
+        }
       }
       .errorlist{
         color: red;
@@ -163,20 +182,48 @@ header {
       }
       .user-list > div{
         min-height: 50px;
-        padding: 5px;
-        border-bottom: 1px solid #D2D2D2;
+        padding: 10px;
+        border-bottom: 1px solid @border-color;
         position:relative;
         &:hover{
-          background-color: #f6f6f6;
+          background-color: @hover-bg-color;
         }
         &:last-child{
           border-bottom: none;
+          border-radius: 0 0 5px 5px;
         }
         .container{
-          margin-left: 60px;
+          margin-left: 70px;
         }
         img{
           position: absolute;
+        }
+      }
+      .stats{
+        border-top: 1px solid @border-color;
+        .item{
+          display: block;
+          float: left;
+          width: 33%;
+          border-left: 1px solid @border-color;
+          line-height: 20px;
+          padding: 10px 0;
+          text-align: center;
+          &:first-child{
+            border: none;
+            border-bottom-left-radius: 5px;
+          }
+          &:last-child{
+            border-bottom-right-radius: 5px;
+          }
+          &:hover{
+            background-color: @hover-bg-color;
+          }
+          em{
+            color: #AAAAAA;
+            font-style: normal;
+            font-size: 12px;
+          }
         }
       }
     }
@@ -184,22 +231,37 @@ header {
     .left {
       width: @content-width - 327;
       float: left;
-      div.ribbitWrapper {
+      #id-ribbit-load{
+        display: none;
+        background: url('../gfx/loadinfo-small.gif') no-repeat center center;
+        height: 40px;
+      }
+      div.ribbit-wrapper{
         img {
-          float: left;
+          position: absolute;
+        }
+        .ribbit-content{
+          margin-left: 90px;
         }
         padding: 15px 0;
         border-bottom: 1px solid @border-color;
         min-height: 50px;
         cursor: pointer;
+        .links{
+          visibility: hidden;
+          a{
+            padding: 0 3px;
+          }
+        }
         &:hover{
-          background: #f6f6f6;
+          background: @hover-bg-color;
           .links{
-            display: block;
+            visibility: visible;
           }
         }
         &:last-child {
           border: none;
+          border-radius: 0 0 5px 5px;
         }
         img.avatar {
           margin: 0 19px 0 20px;
@@ -212,7 +274,7 @@ header {
           float: right;
           font-size: 12px;
           margin-right: 10px;
-          padding: 2px;
+          padding: 2px 5px;
         }
         p {
           margin: 5px 50px 0 90px;
@@ -233,7 +295,7 @@ header {
       border: 1px solid @border-color;
       background: white;
       margin: 0;
-      margin-bottom: 29px;
+      margin-bottom: 20px;
       border-radius: 6px;
       font-size: 14px;
       form {
@@ -244,7 +306,7 @@ header {
         margin: 0;
         font-weight: normal;
         font-size: 18px;
-        padding: 13px 23px;
+        padding: 10px 23px;
         height: 23px;
       }
       p {
@@ -268,7 +330,7 @@ header {
 
 footer {
 	background: url(../gfx/bg-footer.png);
-	height: 251px;
+	height: 150px;
 	font-size: 14px;
 	clear: both;
 	div.wrapper {

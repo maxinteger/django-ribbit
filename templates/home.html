@@ -9,58 +9,21 @@
 
 {% block content %}
     <div id="sidebar" class="right">
-        <div id="createRibbit" class="panel">
-            <h1>Create a Ribbit</h1>
-            <form class="ajax">
-                <textarea id="id-ribbit-field" name="text" class="ribbitText"></textarea>
-                <a href="#ribbit_save" class="submit save">Ribbit</a>
-            </form>
-        </div>
-        <div class="panel">
-            <h1>Users</h1>
-            <div class="user-list">
-                {% for u in users %}
-                    {% if u != user %}
-                        <div class="user-item">
-                            <img class="avatar" src="{% get_static_prefix %}gfx/user1.png" />
-                            <div class="container">
-                                <span class="user-data">
-                                    <span class="name">{{ u.first_name }} {{ u.last_name }}</span>
-                                    <span class="username">@{{ u.username }}</span>
-                                </span>
-                                <div class="links">
-                                    <a class="follow {% if u not in fallowed %}followed{% endif %}" href="#{{ u.id }}">follow</a>
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        </div>
+        {% include 'panels/profile.html' %}
+
+        {% include 'panels/new-ribbit.html' %}
+
+        {% include 'panels/user-list.html' %}
     </div>
 
     <div id="main" class="left">
         <div class="panel">
-            <h1>Your Ribbit Profile</h1>
-            <div class="ribbitWrapper">
-                <img class="avatar" src="{% get_static_prefix %}gfx/user1.png">
-                <span class="user-data">
-                    <span class="name">{{ user.first_name }} {{ user.last_name }}</span>
-                    <span class="username">@{{ user.username }}</span>
-                </span>
-                <p>
-                    {{ counts.ribbits }} Ribbits<span class="spacing">
-                    {{ counts.followers }} Followers</span><span class="spacing">
-                    {{ counts.following }} Following</span><br>
-                    Cras justo odio, dapibus ac facilisis in, egestas Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. <a href="#">http://net.tutsplus.com/tutorials/php/ ...</a>
-                </p>
-            </div>
-        </div>
-
-        <div class="panel">
             <h1>Your Ribbit Buddies</h1>
-            <div id="id-ribbits">
-                {% include 'frags/ribbits.html' %}
+            <div id="id-ribbits" ng-controller="RibbitListCtrl">
+                {% include 'frags/ribbit.html' %}
+            </div>
+            <div id="id-ribbit-load">
+
             </div>
         </div>
     </div>
@@ -68,4 +31,8 @@
     <div id="id-templates" style="display: none">
 
     </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% get_static_prefix %}script/controllers.js" type="text/javascript"></script>
 {% endblock %}

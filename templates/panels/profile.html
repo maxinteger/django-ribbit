@@ -1,0 +1,26 @@
+{% extends 'frags/panel.html' %}
+
+{% block title %}Your Ribbit Profile{% endblock %}
+
+{% block content %}
+    <p>
+        Cras justo odio, dapibus ac facilisis in, egestas Vivamus sagittis lacus vel
+        augue laoreet rutrum faucibus dolor auctor.
+        <a href="#">http://net.tutsplus.com/tutorials/php/ ...</a>
+    </p>
+    <div class="stats">
+        <span class="item">
+            <b>{{ counts.ribbits }}</b><br/>
+            <em>Ribbits</em>
+        </span>
+        <span class="item">
+            <b>{{ counts.followers }}</b><br/>
+            <em>Followers</em>
+        </span>
+        <span class="item">
+            <b>{{ counts.following }}</b><br/>
+            <em>Following</em>
+        </span>
+    </div>
+    <div class="clear"></div>
+{% endblock %}

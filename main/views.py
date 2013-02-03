@@ -97,13 +97,9 @@ def get_ribbits(request):
     followed_users = list(Follows.objects.filter(user__exact=user.id))
     ribbits = Ribbits.objects.filter(user_id__in=followed_users+[user.id]).order_by('-created_at')
 
-    template_params = {
-        'user': user,
-        'ribbits': ribbits,
-    }
     #params.update(csrf(request))
     json = {
-        'ribbits' : render_to_string('frags/ribbits.html', template_params),
+        'ribbits' : [r.toJSON() for r in ribbits], #render_to_string('frags/ribbits.html', template_params),
         'counts':{
             'ribbits' : ribbits.count(),
             'followers': Follows.objects.filter(user_id__exact=user.id).count(),
