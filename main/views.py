@@ -73,7 +73,7 @@ def home(request):
 @login_required(login_url='login')
 def ribbit_save(request):
     """Sort message save"""
-    ribbit = Ribbits(user=request.user, ribbit=request.POST.get('text'))
+    ribbit = Ribbits(user=request.user, ribbit=request.POST.get('ribbit'))
     ribbit.save()
     return render_to_response('frags/ribbit.html', {'ribbit': ribbit})
 

@@ -10,12 +10,13 @@
 
 angular.module('SharedServices', [])
     .config(function ($httpProvider) {
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+        $httpProvider.defaults.headers.post['X-CSRFToken'] = util.getCookie('csrftoken');
         $httpProvider.responseInterceptors.push('myHttpInterceptor');
-        var spinnerFunction = function (data, headersGetter) {
+        $httpProvider.defaults.transformRequest.push(function (data, headersGetter) {
             $('#id-ribbit-load').show();
             return data;
-        };
-        $httpProvider.defaults.transformRequest.push(spinnerFunction);
+        });
     })
 // register the interceptor as a service, intercepts ALL angular ajax http calls
     .factory('myHttpInterceptor', function ($q, $window) {
@@ -32,10 +33,30 @@ angular.module('SharedServices', [])
 
 angular.module('ribbit', ['SharedServices']);
 
+
 /* Controllers */
 
 function RibbitListCtrl($scope, $http) {
-    $http.get('post/ribbits').success(function(data) {
-        $scope.ribbits = data.ribbits;
+    var updateList = function(){
+        $http.get('post/ribbits').success(function(data) {
+            $scope.ribbits = data.ribbits;
+        });
+    }
+console.log($scope)
+    $scope.$root.$on('new_ribbit', function(event, args) {
+        updateList();
     });
+
+    updateList();
+}
+
+function RibbitSaveCtrl($scope, $http){
+    $scope.saveRibbit = function() {
+        var saveDate = {
+            ribbit: $scope.ribbit
+        }
+        $http.post('ribbit_save', $.param(saveDate)).success(function(data){
+            $scope.$emit('new_ribbit', {message: $scope.ribbit});
+        });
+    };
 }
