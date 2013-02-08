@@ -1,22 +1,23 @@
 {% extends 'frags/panel.html' %}
 {% load static %}
+{% load angularjs %}
 
 {% block title%}Users{% endblock %}
 
 {% block content %}
-    <div class="user-list">
-        {% for u in users %}
-            {% if u != user %}
-                <div class="user-item">
-                    <img class="avatar" src="{% get_static_prefix %}gfx/user1.png" />
-                    <div class="container">
-                        {% include 'frags/user-data.html' %}
-                        <div class="links">
-                            <a class="follow {% if u not in fallowed %}followed{% endif %}" href="#{{ u.id }}">follow</a>
-                        </div>
-                    </div>
+    <div class="user-list" ng-cloak ng-controller="userListCtrl">
+        <div class="user-item" ng-repeat="user in users">
+            <img class="avatar" src="{% get_static_prefix %}gfx/user1.png" />
+            <div class="container">
+                <span class="user-data">
+                    <span class="name">{% ng user.first_name %} {% ng user.last_name %}</span>
+                    <span class="username">@{% ng user.username %}</span>
+                </span>
+                <div class="links">
+                    <a href="#" ng-hide="user.following">follow</a>
+                    <a href="#" ng-show="user.following">unfollow</a>
                 </div>
-            {% endif %}
-        {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}

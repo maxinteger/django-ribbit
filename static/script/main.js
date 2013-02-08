@@ -43,29 +43,9 @@ $(function (){
         });
     }
 
-    var $ribbitList = $('#id-ribbits');
-
-    $('form.ajax a.save').click(function(){
-        submit(this, function(data){
-            $('#id-ribbit-field').val('');
-            log(data)
-            $ribbitList.prepend($(data));
-        });
+    $('#id-new-ribbit-field').change(function(){
+        var _this = $(this);
+        _this[!!_this.val() ? 'addClass' : 'removeClass']('changed');
     });
-
-    $('a.follow').click(function(){
-        var _this = $(this), url,
-            params = {
-                user_id: _this.attr('href').substr(1)
-            };
-        if (_this.has('fallowed')){
-            url = 'post/following';
-        } else {
-            url = 'post/unfollowing';
-        }
-        $.post(url, params, function(){
-
-        });
-    })
 
 });

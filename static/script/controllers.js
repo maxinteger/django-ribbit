@@ -52,11 +52,18 @@ console.log($scope)
 
 function RibbitSaveCtrl($scope, $http){
     $scope.saveRibbit = function() {
-        var saveDate = {
-            ribbit: $scope.ribbit
+        if ($scope.ribbit){
+            var saveDate = { ribbit: $scope.ribbit };
+            $http.post('ribbit_save', $.param(saveDate)).success(function(data){
+                $('#id-new-ribbit-field').removeClass('changed').val('');
+                $scope.$emit('new_ribbit', saveDate);
+            });
         }
-        $http.post('ribbit_save', $.param(saveDate)).success(function(data){
-            $scope.$emit('new_ribbit', {message: $scope.ribbit});
-        });
     };
+}
+
+function userListCtrl($scope, $http){
+    $http.post('user_list').success(function(data){
+        $scope.users = data;
+    });
 }
