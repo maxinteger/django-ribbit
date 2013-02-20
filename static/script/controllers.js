@@ -29,14 +29,23 @@ angular.module('SharedServices', [])
                 return $q.reject(response);
             });
         };
-    })
+    });
 
-angular.module('ribbit', ['SharedServices']);
+angular.module('ribbitServices', ['ngResource'])
+    .factory('Ribbits', function($resource){
+        return $resource('phones/:phoneId.json', {}, {
+            query: {method:'GET', params:{phoneId:'phones'}, isArray:true}
+        });
+    });
+
+
+angular.module('ribbit', ['SharedServices', 'ribbitServices']);
 
 
 /* Controllers */
 
-function RibbitListCtrl($scope, $http) {
+function RibbitListCtrl($scope, $http, X) {
+    console.log(arguments)
     var updateList = function(){
         $http.get('post/ribbits').success(function(data) {
             $scope.ribbits = data.ribbits;
@@ -63,6 +72,7 @@ function RibbitSaveCtrl($scope, $http){
 }
 
 function userListCtrl($scope, $http){
+    console.log(arguments)
     $http.post('user_list').success(function(data){
         $scope.users = data;
     });
